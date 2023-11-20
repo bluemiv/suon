@@ -10,6 +10,9 @@
     ]
   },
   "scripts": {
+    "db:start": "docker-compose up -d",
+    "db:stop": "docker-compose down",
+    "db:restart": "yarn db:stop && yarn db:start",
     "server": "yarn workspace @secondhand-trade/server"
   },
   "repository": "https://github.com/bluemiv/secondhand-trade.git",

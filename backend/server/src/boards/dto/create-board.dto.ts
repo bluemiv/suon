@@ -1,5 +1,5 @@
 import { IsString } from 'class-validator';
-import { BoardStatus } from '../boards.model';
+import { BoardStatus } from '../boards.enum';
 
 export class CreateBoardDto {
   @IsString()

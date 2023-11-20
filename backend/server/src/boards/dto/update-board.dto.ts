@@ -1,4 +1,4 @@
-import { BoardStatus } from '../boards.model';
+import { BoardStatus } from '../boards.enum';
 
 export class UpdateBoardDto {
   title?: string;
