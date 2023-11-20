@@ -1,0 +1,14 @@
+{
+  "name": "secondhand-trade",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": {
+    "packages": ["backend/**", "frontend/**", "packages/**"]
+  },
+  "scripts": {
+    "server": "yarn workspace @secondhand-trade/server"
+  },
+  "repository": "https://github.com/bluemiv/secondhand-trade.git",
+  "author": "taehongkim <public.bluemiv@gmail.com>",
+  "license": "MIT"
+}
