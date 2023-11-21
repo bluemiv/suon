@@ -3,14 +3,14 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { CreateBoardDto } from './dto/create-board.dto';
 import { BoardStatus } from './boards.enum';
 import { UpdateBoardDto } from './dto/update-board.dto';
-import { BoardsRepository } from './boards.repository';
 import { Boards } from './boards.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class BoardsService {
   constructor(
     @InjectRepository(Boards)
-    private boardsRepository: BoardsRepository,
+    private boardsRepository: Repository<Boards>,
   ) {}
 
   /**

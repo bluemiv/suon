@@ -7,6 +7,6 @@ export const typeOrmModuleOptions: TypeOrmModuleOptions = {
   username: 'postgres',
   password: 'root',
   database: 'secondhand-trade-db',
-  entities: [__dirname + '/../**/*.entity.{js,ts}'],
+  autoLoadEntities: true,
   synchronize: true,
 };
