@@ -7,18 +7,13 @@ export default function Footer() {
   return (
     <footer className="h-footer px-lg py-md text-center flex flex-col gap-md">
       <Copyright />
-      <div className="flex items-center justify-center gap-lg">
+      <div className="flex items-center justify-center gap-lg text-sm">
         {(
           [
             {
               label: 'Github',
               href: process.env.NEXT_PUBLIC_GITHUB_URL,
               icon: <Icons.Github />,
-            },
-            {
-              label: 'Blog',
-              href: process.env.NEXT_PUBLIC_EMAIL,
-              icon: <Icons.Tistory />,
             },
           ] as { label: string; href: string; icon: ReactNode }[]
         )

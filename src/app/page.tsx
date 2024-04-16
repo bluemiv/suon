@@ -19,7 +19,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex-1">
+    <main className="flex-1 p-md">
       <div className="text-2xl">
         <div className="font-semibold">한강</div>
         <div className="flex gap-md">
