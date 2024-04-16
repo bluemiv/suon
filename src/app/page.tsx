@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { TemperatureViewer, Title } from '@/components';
 
 const fetchTemperature = async () => {
   const url = process.env.NEXT_PUBLIC_API_HOST_URL;
@@ -19,37 +20,23 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="flex-1 p-md">
-      <div className="text-2xl">
-        <div className="font-semibold">한강</div>
-        <div className="flex gap-md">
-          <span>온도</span>
-          <span>{temperature['노량진']?.TEMP}</span>
-        </div>
-        <div className="flex gap-md">
-          <span>PH</span>
-          <span>{temperature['노량진']?.PH}</span>
-        </div>
+    <main className="flex-1 flex flex-col gap-xl p-lg">
+      <div className="flex flex-col gap-md">
+        <Title size="lg">한강</Title>
+        <TemperatureViewer ph={temperature['노량진']?.PH} temp={temperature['노량진']?.TEMP} />
       </div>
-      <div>
-        <div>한강 온도 전체 보기</div>
-        <div>
+      <div className="flex flex-col gap-lg">
+        <Title size="lg">한강 온도 전체 보기</Title>
+        <div className="flex flex-col gap-lg">
           {Object.entries(temperature).map((entry) => {
             const [locale, tempInfo] = entry;
             return (
-              <div key={locale}>
-                <div>
-                  <span>{locale}</span>
-                  <div className="flex gap-md">
-                    <span>온도</span>
-                    <span>{tempInfo?.TEMP}</span>
-                  </div>
-                  <div className="flex gap-md">
-                    <span>PH</span>
-                    <span>{tempInfo?.PH}</span>
-                  </div>
-                </div>
-              </div>
+              <TemperatureViewer
+                key={locale}
+                locale={locale}
+                ph={tempInfo.PH}
+                temp={tempInfo.TEMP}
+              />
             );
           })}
         </div>
