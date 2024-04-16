@@ -1,9 +1,11 @@
-import Link from 'next/link';
+import { Button } from '@/components';
 
 export default function Header() {
   return (
-    <header>
-      <Link href="/">SUON</Link>
+    <header className="h-[80px]">
+      <Button type="link" href="/">
+        SUON
+      </Button>
     </header>
   );
 }

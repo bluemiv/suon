@@ -1,10 +1,11 @@
 import { Layout } from '@/components';
+import { TPropsWithChildren } from '@/types';
 
-export default function Template() {
+export default function Template({ children }: TPropsWithChildren) {
   return (
     <div className="flex flex-col min-h-screen">
       <Layout.Header />
-      <main className="flex-1"></main>
+      {children}
       <Layout.Footer />
     </div>
   );
