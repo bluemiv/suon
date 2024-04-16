@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useLayoutEffect, useMemo, useState } from 'react';
 import { TemperatureViewer, Title } from '@/components';
 
 const fetchTemperature = async () => {
@@ -13,18 +13,36 @@ const fetchTemperature = async () => {
 export default function Home() {
   const [temperature, setTemperature] = useState<{ [key: string]: any }>({});
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     fetchTemperature().then((temperature) =>
-      setTemperature(temperature?.DATAs?.DATA?.HANGANG || {}),
+      setTemperature(
+        Object.entries(
+          (temperature?.DATAs?.DATA?.HANGANG || {}) as {
+            [key: string]: any;
+          },
+        ).reduce((acc, entry) => {
+          const [locale, tempInfo] = entry;
+          if (!tempInfo?.TEMP) return acc;
+          return { ...acc, [locale]: tempInfo };
+        }, {}),
+      ),
     );
   }, []);
 
+  const randomTemperature = useMemo(
+    () =>
+      Object.entries(temperature)?.[Math.floor(Math.random() * Object.keys(temperature).length)],
+    [temperature],
+  );
+
   return (
     <main className="flex-1 flex flex-col gap-xl p-lg">
-      <div className="flex flex-col gap-md">
-        <Title size="lg">한강</Title>
-        <TemperatureViewer ph={temperature['노량진']?.PH} temp={temperature['노량진']?.TEMP} />
-      </div>
+      {!!randomTemperature && (
+        <div className="flex flex-col gap-md">
+          <Title size="lg">{randomTemperature[0]} 온도</Title>
+          <TemperatureViewer ph={randomTemperature[1].PH} temp={randomTemperature[1].TEMP} />
+        </div>
+      )}
       <div className="flex flex-col gap-lg">
         <Title size="lg">한강 온도 전체 보기</Title>
         <div className="flex flex-col gap-lg">
